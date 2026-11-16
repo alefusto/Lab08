@@ -16,7 +16,12 @@ class Distributore:
 
     def get_prezzi(self):
         """ Aggiorna e Restituisce la lista di prezzi (self.lista_prezzi) associati al distributore"""
-        # TODO
+        # Devo interrogare il DAO che ha ottenuto i dati dalla query SQL
+        distributore = self.id
+        if self.lista_prezzi is None:
+            from database.prezzo_DAO import PrezzoDAO
+            self.lista_prezzi = PrezzoDAO.get_prezzi(distributore)
+        return self.lista_prezzi
 
     def __eq__(self, other):
         return isinstance(other, Distributore) and self.id == other.id
